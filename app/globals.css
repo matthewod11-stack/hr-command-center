@@ -1,26 +1,612 @@
 @import "tailwindcss";
 
+/* ============================================
+   HR Command Center - Design System
+   Aesthetic: "Warm Intelligence"
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Stone neutrals - refined */
+  --stone-50: #fafaf9;
+  --stone-100: #f5f5f4;
+  --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-600: #57534e;
+  --stone-700: #44403c;
+  --stone-800: #292524;
+  --stone-900: #1c1917;
+
+  /* Warm accent - terracotta/coral */
+  --warm-50: #fef7f4;
+  --warm-100: #fdeee7;
+  --warm-200: #fad9c9;
+  --warm-300: #f5bfa3;
+  --warm-400: #e89b6f;
+  --warm-500: #d97b4a;
+  --warm-600: #c4602d;
+  --warm-700: #a34c24;
+  --warm-800: #863f22;
+  --warm-900: #6d351f;
+
+  /* Sage green - organic accent */
+  --sage-50: #f6f7f4;
+  --sage-100: #e9ebe4;
+  --sage-200: #d4d9cb;
+  --sage-300: #b7c0a9;
+  --sage-400: #97a383;
+  --sage-500: #7a8a66;
+  --sage-600: #5f6d4f;
+  --sage-700: #4b5640;
+  --sage-800: #3e4636;
+  --sage-900: #353c30;
+
+  /* Orange accent - energy */
+  --orange-50: #fff8f1;
+  --orange-100: #ffedd5;
+  --orange-200: #fed7aa;
+  --orange-300: #fdba74;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+
+  /* Blue accent - trust/technology */
+  --blue-50: #f0f9ff;
+  --blue-100: #e0f2fe;
+  --blue-200: #bae6fd;
+  --blue-400: #38bdf8;
+  --blue-500: #0ea5e9;
+  --blue-600: #0284c7;
+
+  /* Core semantic */
+  --background: var(--stone-50);
+  --foreground: var(--stone-800);
+  --muted: var(--stone-100);
+  --muted-foreground: var(--stone-500);
+  --accent: var(--warm-500);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+
+  /* Stone palette */
+  --color-stone-50: var(--stone-50);
+  --color-stone-100: var(--stone-100);
+  --color-stone-200: var(--stone-200);
+  --color-stone-300: var(--stone-300);
+  --color-stone-400: var(--stone-400);
+  --color-stone-500: var(--stone-500);
+  --color-stone-600: var(--stone-600);
+  --color-stone-700: var(--stone-700);
+  --color-stone-800: var(--stone-800);
+  --color-stone-900: var(--stone-900);
+
+  /* Warm palette */
+  --color-warm-50: var(--warm-50);
+  --color-warm-100: var(--warm-100);
+  --color-warm-200: var(--warm-200);
+  --color-warm-300: var(--warm-300);
+  --color-warm-400: var(--warm-400);
+  --color-warm-500: var(--warm-500);
+  --color-warm-600: var(--warm-600);
+  --color-warm-700: var(--warm-700);
+  --color-warm-800: var(--warm-800);
+  --color-warm-900: var(--warm-900);
+
+  /* Sage palette */
+  --color-sage-50: var(--sage-50);
+  --color-sage-100: var(--sage-100);
+  --color-sage-200: var(--sage-200);
+  --color-sage-300: var(--sage-300);
+  --color-sage-400: var(--sage-400);
+  --color-sage-500: var(--sage-500);
+  --color-sage-600: var(--sage-600);
+  --color-sage-700: var(--sage-700);
+  --color-sage-800: var(--sage-800);
+  --color-sage-900: var(--sage-900);
+
+  /* Orange palette */
+  --color-orange-50: var(--orange-50);
+  --color-orange-100: var(--orange-100);
+  --color-orange-200: var(--orange-200);
+  --color-orange-300: var(--orange-300);
+  --color-orange-400: var(--orange-400);
+  --color-orange-500: var(--orange-500);
+
+  /* Blue palette */
+  --color-blue-50: var(--blue-50);
+  --color-blue-100: var(--blue-100);
+  --color-blue-200: var(--blue-200);
+  --color-blue-400: var(--blue-400);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600);
+
+  /* Typography */
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), Georgia, serif;
+  --font-mono: var(--font-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   Base Typography
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display font for headlines */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+/* Mono font for code/chat */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--warm-200);
+  color: var(--stone-900);
+}
+
+/* ============================================
+   Custom Scrollbar
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--stone-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--stone-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--stone-400);
+}
+
+/* ============================================
+   Gradient Backgrounds
+   ============================================ */
+
+.gradient-warm {
+  background: linear-gradient(135deg, var(--warm-500) 0%, var(--orange-400) 100%);
+}
+
+.gradient-warm-soft {
+  background: linear-gradient(135deg, var(--warm-100) 0%, var(--orange-50) 100%);
+}
+
+.gradient-warm-subtle {
+  background: linear-gradient(135deg, var(--warm-50) 0%, var(--stone-50) 100%);
+}
+
+.gradient-subtle {
+  background: linear-gradient(180deg, var(--stone-50) 0%, var(--stone-100) 100%);
+}
+
+.gradient-hero {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(217, 123, 74, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(251, 146, 60, 0.1), transparent),
+    radial-gradient(ellipse 50% 30% at 20% 80%, rgba(122, 138, 102, 0.08), transparent),
+    var(--stone-50);
+}
+
+/* ============================================
+   Text Gradients
+   ============================================ */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--warm-600) 0%, var(--warm-500) 50%, var(--orange-400) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, var(--stone-700) 0%, var(--warm-700) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Focus States (Accessibility)
+   ============================================ */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--warm-500);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Shadows
+   ============================================ */
+
+.shadow-warm {
+  box-shadow: 0 4px 6px -1px rgba(217, 123, 74, 0.1), 0 2px 4px -2px rgba(217, 123, 74, 0.1);
+}
+
+.shadow-warm-lg {
+  box-shadow: 0 10px 15px -3px rgba(217, 123, 74, 0.1), 0 4px 6px -4px rgba(217, 123, 74, 0.1);
+}
+
+.shadow-warm-xl {
+  box-shadow: 0 20px 25px -5px rgba(217, 123, 74, 0.1), 0 8px 10px -6px rgba(217, 123, 74, 0.1);
+}
+
+.shadow-glow {
+  box-shadow:
+    0 0 0 1px rgba(217, 123, 74, 0.1),
+    0 4px 16px rgba(217, 123, 74, 0.15),
+    0 8px 32px rgba(217, 123, 74, 0.1);
+}
+
+.shadow-soft {
+  box-shadow:
+    0 2px 8px -2px rgba(0, 0, 0, 0.05),
+    0 4px 16px -4px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-elevated {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.04),
+    0 8px 16px rgba(0, 0, 0, 0.04),
+    0 16px 32px rgba(0, 0, 0, 0.04);
+}
+
+/* ============================================
+   Glassmorphism
+   ============================================ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-warm {
+  background: rgba(254, 247, 244, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(217, 123, 74, 0.15);
+}
+
+.glass-dark {
+  background: rgba(41, 37, 36, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   Chat Interface Styles
+   ============================================ */
+
+.chat-bubble {
+  background: white;
+  border: 1px solid var(--stone-200);
+  border-radius: 1rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.chat-bubble-ai {
+  background: linear-gradient(135deg, var(--warm-50) 0%, white 100%);
+  border: 1px solid var(--warm-200);
+  border-radius: 1rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.chat-bubble-user {
+  background: var(--stone-800);
+  color: white;
+  border-radius: 1rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+/* Typing indicator animation */
+.typing-dot {
+  animation: typing-bounce 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+/* ============================================
+   Context Panel Styles
+   ============================================ */
+
+.context-panel {
+  background: white;
+  border-left: 1px solid var(--stone-200);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+}
+
+.context-panel-document {
+  border-top: 3px solid var(--warm-500);
+}
+
+.context-panel-analytics {
+  border-top: 3px solid var(--blue-500);
+}
+
+.context-panel-performance {
+  border-top: 3px solid var(--sage-500);
+}
+
+/* ============================================
+   Skill Badge Styles
+   ============================================ */
+
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: white;
+  border: 1px solid var(--stone-200);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--stone-700);
+  transition: all 0.2s ease;
+}
+
+.skill-badge:hover {
+  border-color: var(--warm-300);
+  background: var(--warm-50);
+  color: var(--warm-700);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   Texture & Background Effects
+   ============================================ */
+
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+}
+
+/* ============================================
+   Floating Animation
+   ============================================ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* ============================================
+   Pulse Glow Animation
+   ============================================ */
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(217, 123, 74, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(217, 123, 74, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ============================================
+   Blob Shapes (Background decoration)
+   ============================================ */
+
+.blob {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.blob-animate {
+  animation: blob-morph 8s ease-in-out infinite;
+}
+
+@keyframes blob-morph {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+  50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+  75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+}
+
+/* ============================================
+   Card Hover Effects
+   ============================================ */
+
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 24px -8px rgba(0, 0, 0, 0.1),
+    0 4px 8px -4px rgba(217, 123, 74, 0.1);
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--warm-500) 0%, var(--warm-600) 100%);
+  color: white;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(217, 123, 74, 0.25);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--warm-600) 0%, var(--warm-700) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(217, 123, 74, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: var(--stone-700);
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid var(--stone-200);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--warm-300);
+  background: var(--warm-50);
+  color: var(--warm-700);
+}
+
+/* ============================================
+   Section Styles
+   ============================================ */
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  background: var(--warm-50);
+  color: var(--warm-600);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  border: 1px solid var(--warm-200);
+}
+
+/* ============================================
+   Comparison Table Styles
+   ============================================ */
+
+.comparison-cell-us {
+  background: linear-gradient(135deg, var(--warm-50) 0%, white 100%);
+  border-left: 3px solid var(--warm-500);
+}
+
+.comparison-cell-them {
+  background: var(--stone-50);
+}
+
+/* ============================================
+   9-Box Grid Preview
+   ============================================ */
+
+.nine-box-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--stone-200);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.nine-box-cell {
+  background: white;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.nine-box-cell.highlight {
+  background: var(--warm-50);
+}
+
+/* ============================================
+   Responsive Utilities
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
