@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
+import { WaitlistModal } from "./WaitlistModal";
 
 const navLinks = [
   { href: "#how-it-works", label: "How It Works" },
@@ -16,6 +17,7 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +29,10 @@ export function Header() {
 
   return (
     <>
+      <WaitlistModal
+        isOpen={isWaitlistOpen}
+        onClose={() => setIsWaitlistOpen(false)}
+      />
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -68,12 +74,13 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center">
-            <Link
-              href="#pricing"
+            <button
+              type="button"
+              onClick={() => setIsWaitlistOpen(true)}
               className="btn-primary text-sm px-5 py-2.5"
             >
-              Get Started
-            </Link>
+              Join Waitlist
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -124,13 +131,16 @@ export function Header() {
                 transition={{ delay: 0.35 }}
                 className="mt-4"
               >
-                <Link
-                  href="#pricing"
-                  onClick={() => setMobileMenuOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setIsWaitlistOpen(true);
+                  }}
                   className="btn-primary px-8 py-3"
                 >
-                  Get Started
-                </Link>
+                  Join Waitlist
+                </button>
               </motion.div>
             </motion.div>
           </motion.div>

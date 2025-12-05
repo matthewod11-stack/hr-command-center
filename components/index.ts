@@ -6,3 +6,4 @@ export { Security } from "./Security";
 export { FAQ } from "./FAQ";
 export { Pricing } from "./Pricing";
 export { Footer } from "./Footer";
+export { WaitlistModal } from "./WaitlistModal";

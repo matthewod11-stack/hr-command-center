@@ -1,14 +1,16 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Check,
   Sparkles,
-  Download,
+  Bell,
   Key,
   HardDrive,
+  Calendar,
 } from "lucide-react";
+import { WaitlistModal } from "./WaitlistModal";
 
 const features = [
   "Full HR Command Center software",
@@ -24,9 +26,15 @@ const features = [
 export function Pricing() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   return (
-    <section
+    <>
+      <WaitlistModal
+        isOpen={isWaitlistOpen}
+        onClose={() => setIsWaitlistOpen(false)}
+      />
+      <section
       id="pricing"
       ref={ref}
       className="py-24 lg:py-32 bg-white relative overflow-hidden"
@@ -67,13 +75,17 @@ export function Pricing() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="w-16 h-16 rounded-2xl bg-warm-100 flex items-center justify-center mx-auto mb-6">
-              <Download className="w-8 h-8 text-warm-600" />
+              <Bell className="w-8 h-8 text-warm-600" />
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage-100 text-sage-700 rounded-full text-sm font-medium mb-4">
+              <Calendar className="w-4 h-4" />
+              Launching Early 2026
             </div>
             <h3 className="font-display text-2xl font-bold text-stone-800 mb-2">
               HR Command Center
             </h3>
             <p className="text-stone-500">
-              Download, set up your API key, and start using it today.
+              Join the waitlist to be first in line when we launch.
             </p>
           </div>
 
@@ -101,15 +113,16 @@ export function Pricing() {
           </ul>
 
           {/* CTA */}
-          <a
-            href="#"
-            className="block w-full text-center py-4 rounded-full font-medium bg-warm-500 hover:bg-warm-600 text-white shadow-warm transition-colors text-lg"
+          <button
+            type="button"
+            onClick={() => setIsWaitlistOpen(true)}
+            className="block w-full text-center py-4 rounded-full font-medium bg-warm-500 hover:bg-warm-600 text-white shadow-warm transition-colors text-lg cursor-pointer"
           >
             <span className="flex items-center justify-center gap-2">
-              <Download className="w-5 h-5" />
-              Download Now — $99
+              <Bell className="w-5 h-5" />
+              Join the Waitlist
             </span>
-          </a>
+          </button>
 
           {/* Notes */}
           <div className="mt-8 grid sm:grid-cols-2 gap-4">
@@ -145,5 +158,6 @@ export function Pricing() {
         </motion.p>
       </div>
     </section>
+    </>
   );
 }

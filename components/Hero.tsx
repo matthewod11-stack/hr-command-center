@@ -5,13 +5,14 @@ import Link from "next/link";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   MessageCircle,
-  ArrowRight,
   Sparkles,
   FileText,
   BarChart3,
   Users,
   Send,
+  Bell,
 } from "lucide-react";
+import { WaitlistModal } from "./WaitlistModal";
 
 const stats = [
   { value: "25", label: "AI Skills", suffix: "" },
@@ -245,8 +246,14 @@ function ChatDemo() {
 export function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   return (
+    <>
+      <WaitlistModal
+        isOpen={isWaitlistOpen}
+        onClose={() => setIsWaitlistOpen(false)}
+      />
     <section ref={ref} className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28 gradient-hero">
       {/* Background decorations */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-warm-200/20 blob blob-animate -z-10" />
@@ -297,10 +304,14 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4 mb-10"
             >
-              <Link href="#pricing" className="btn-primary text-base px-8 py-4">
-                Start Chatting
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <button
+                type="button"
+                onClick={() => setIsWaitlistOpen(true)}
+                className="btn-primary text-base px-8 py-4"
+              >
+                Join Waitlist
+                <Bell className="w-4 h-4" />
+              </button>
               <Link href="#how-it-works" className="btn-secondary text-base px-8 py-4">
                 See It In Action
               </Link>
@@ -336,5 +347,6 @@ export function Hero() {
         </div>
       </div>
     </section>
+    </>
   );
 }
